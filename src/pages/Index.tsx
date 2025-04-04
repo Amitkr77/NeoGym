@@ -1,7 +1,6 @@
 
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import Layout from '../components/Layout';
 import Hero from '../components/home/Hero';
 import PromoBanner from '../components/home/PromoBanner';
 import WhyChooseUs from '../components/home/WhyChooseUs';
@@ -14,21 +13,17 @@ import CallToAction from '../components/home/CallToAction';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow pt-16"> {/* Added padding-top to account for fixed navbar */}
-        <Hero />
-        <PromoBanner />
-        <WhyChooseUs />
-        <AboutSection />
-        <Coaches />
-        <FacilitiesPricing />
-        <Reviews />
-        <BlogSection />
-        <CallToAction />
-      </main>
-      <Footer />
-    </div>
+    <Layout showPromoBanner={true}>
+      <Hero />
+      <PromoBanner />
+      <WhyChooseUs />
+      <AboutSection />
+      <Coaches />
+      <FacilitiesPricing />
+      <Reviews />
+      <BlogSection />
+      <CallToAction />
+    </Layout>
   );
 };
 
