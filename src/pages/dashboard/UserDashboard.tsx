@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -16,7 +15,7 @@ import {
   Dumbbell,
   Activity,
   Clock,
-  Fire,
+  Flame,
   Award,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -24,7 +23,6 @@ import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/components/ui/use-toast';
 import { motion } from 'framer-motion';
 
-// Sample user data
 const userData = {
   name: "John Doe",
   email: "johndoe@example.com",
@@ -134,12 +132,10 @@ const UserDashboard = () => {
     navigate('/');
   };
 
-  // Count unread notifications
   const unreadCount = userData.notifications.filter(n => !n.read).length;
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <motion.aside 
         className={`bg-neogym-dark text-white ${isSidebarOpen ? 'w-64' : 'w-20'} transition-all duration-300 fixed h-full z-10`}
         initial={{ x: -50, opacity: 0 }}
@@ -196,9 +192,7 @@ const UserDashboard = () => {
         </nav>
       </motion.aside>
 
-      {/* Main Content */}
       <main className={`flex-1 overflow-auto transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
-        {/* Header */}
         <header className="bg-white shadow-sm p-4 flex justify-between items-center">
           <div className="flex items-center">
             <h2 className="text-xl font-bold">
@@ -265,7 +259,6 @@ const UserDashboard = () => {
           </div>
         </header>
 
-        {/* Dashboard Content */}
         {activeTab === 'dashboard' && (
           <motion.div
             className="p-6"
@@ -273,7 +266,6 @@ const UserDashboard = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Welcome Section */}
             <div className="bg-white rounded-lg shadow-md p-6 mb-6">
               <h3 className="text-xl font-bold mb-4">Welcome back, {userData.name}!</h3>
               <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -294,7 +286,6 @@ const UserDashboard = () => {
               </div>
             </div>
             
-            {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
               <motion.div 
                 className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
@@ -333,7 +324,7 @@ const UserDashboard = () => {
               >
                 <div className="flex items-center mb-2">
                   <div className="bg-red-100 p-3 rounded-full mr-4">
-                    <Fire className="text-red-500" size={20} />
+                    <Flame className="text-red-500" size={20} />
                   </div>
                   <h4 className="font-bold">Calories</h4>
                 </div>
@@ -357,7 +348,6 @@ const UserDashboard = () => {
               </motion.div>
             </div>
             
-            {/* Goals & Progress */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
               <div className="bg-white rounded-lg shadow-md p-6 lg:col-span-2">
                 <div className="flex items-center justify-between mb-4">
@@ -447,7 +437,6 @@ const UserDashboard = () => {
               </div>
             </div>
             
-            {/* Recent Workouts */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-bold">Recent Workout History</h3>
@@ -486,7 +475,6 @@ const UserDashboard = () => {
           </motion.div>
         )}
 
-        {/* Profile Tab */}
         {activeTab === 'profile' && (
           <motion.div
             className="p-6"
@@ -511,7 +499,6 @@ const UserDashboard = () => {
           </motion.div>
         )}
 
-        {/* Placeholder for other tabs */}
         {(activeTab === 'schedule' || activeTab === 'progress' || 
           activeTab === 'payments' || activeTab === 'settings') && (
           <motion.div
