@@ -349,8 +349,12 @@ const AdminDashboard = () => {
       // Add new member
       const newMember = {
         id: members.length + 1,
-        ...values,
-        joinDate: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+        name: values.name,
+        email: values.email,
+        membership: values.membership,
+        status: values.status,
+        joinDate: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        notes: values.notes
       };
       setMembers([newMember, ...members]);
       toast({
