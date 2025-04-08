@@ -2,16 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { ArrowRight, Play, Pause } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-  // This would be replaced with actual auth logic
+  // Check if user is logged in
   useEffect(() => {
-    // For demo purposes, check if user is logged in
     const checkLoginStatus = () => {
-      // This is just placeholder logic - would be replaced with actual auth check
       const token = localStorage.getItem('auth_token');
       setIsLoggedIn(!!token);
     };
@@ -30,6 +30,18 @@ const Hero = () => {
         video.play();
       }
     }
+  };
+
+  const handleGetStarted = () => {
+    if (isLoggedIn) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signup');
+    }
+  };
+
+  const handleTakeTour = () => {
+    navigate('/contact');
   };
 
   return (
@@ -69,10 +81,17 @@ const Hero = () => {
             Experience fitness like never before.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-8 py-6">
+            <Button 
+              className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-8 py-6"
+              onClick={handleGetStarted}
+            >
               {isLoggedIn ? "Track Your Progress" : "Get Started"}
             </Button>
-            <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+            <Button 
+              variant="outline" 
+              className="bg-transparent border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              onClick={handleTakeTour}
+            >
               Take a Tour <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

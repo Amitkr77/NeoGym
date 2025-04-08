@@ -1,8 +1,11 @@
 
 import React from 'react';
 import { Button } from '../ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const CallToAction = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 bg-neogym-dark text-white relative overflow-hidden">
       {/* Background with overlay */}
@@ -15,7 +18,7 @@ const CallToAction = () => {
           backgroundBlendMode: 'overlay'
         }}
       />
-              <div className="absolute inset-0 bg-black opacity-70 z-10"></div>
+      <div className="absolute inset-0 bg-black opacity-70 z-10"></div>
 
       
       <div className="container mx-auto px-4 relative z-10">
@@ -28,10 +31,17 @@ const CallToAction = () => {
             Our expert trainers and state-of-the-art facilities are waiting for you.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-10 py-6">
+            <Button 
+              className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-10 py-6"
+              onClick={() => navigate('/signup')}
+            >
               Join NeoGym Today
             </Button>
-            <Button variant="outline" className="border-white text-black hover:bg-white/10 text-lg px-10 py-6">
+            <Button 
+              variant="outline" 
+              className="border-white text-white hover:bg-white/10 text-lg px-10 py-6"
+              onClick={() => navigate('/contact')}
+            >
               Book a Free Tour
             </Button>
           </div>

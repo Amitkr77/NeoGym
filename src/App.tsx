@@ -38,13 +38,15 @@ const App = () => (
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           
+          {/* Map the old routes to the new consolidated ones */}
+          <Route path="/member-login" element={<Login />} />
+          <Route path="/admin-login" element={<Login />} />
+          
           {/* These routes will be implemented in the future */}
           <Route path="/facilities" element={<NotFound />} />
           <Route path="/pricing" element={<NotFound />} />
           <Route path="/reviews" element={<NotFound />} />
           <Route path="/classes" element={<NotFound />} />
-          <Route path="/member-login" element={<NotFound />} />
-          <Route path="/admin-login" element={<NotFound />} />
           <Route path="/sitemap" element={<NotFound />} />
           
           {/* Catch-all route */}

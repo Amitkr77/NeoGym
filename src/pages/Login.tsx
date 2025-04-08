@@ -1,13 +1,13 @@
 
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import Layout from '../components/Layout';
 
 const Login = () => {
@@ -16,9 +16,19 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loginType, setLoginType] = useState<'member' | 'admin'>('member');
   
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    // Check if type=admin in URL
+    const type = searchParams.get('type');
+    if (type === 'admin') {
+      setLoginType('admin');
+    }
+  }, [searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,25 +48,40 @@ const Login = () => {
     setTimeout(() => {
       setIsSubmitting(false);
       
-      // Demo credentials for user/admin login
-      if (email === 'user@example.com' && password === 'password') {
-        toast({
-          title: "Success",
-          description: "Logged in as user successfully",
-        });
-        navigate('/dashboard');
-      } else if (email === 'admin@example.com' && password === 'admin') {
-        toast({
-          title: "Success",
-          description: "Logged in as admin successfully",
-        });
-        navigate('/admin');
+      if (loginType === 'admin') {
+        // Admin login credentials
+        if (email === 'admin@example.com' && password === 'admin') {
+          localStorage.setItem('auth_token', 'admin-token-123');
+          localStorage.setItem('user_role', 'admin');
+          toast({
+            title: "Success",
+            description: "Logged in as admin successfully",
+          });
+          navigate('/admin');
+        } else {
+          toast({
+            title: "Error",
+            description: "Invalid admin credentials",
+            variant: "destructive",
+          });
+        }
       } else {
-        toast({
-          title: "Error",
-          description: "Invalid email or password",
-          variant: "destructive",
-        });
+        // Member login credentials
+        if (email === 'user@example.com' && password === 'password') {
+          localStorage.setItem('auth_token', 'user-token-123');
+          localStorage.setItem('user_role', 'user');
+          toast({
+            title: "Success",
+            description: "Logged in successfully",
+          });
+          navigate('/dashboard');
+        } else {
+          toast({
+            title: "Error",
+            description: "Invalid email or password",
+            variant: "destructive",
+          });
+        }
       }
     }, 1500);
   };
@@ -77,8 +102,14 @@ const Login = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-8">
-                <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
-                <p className="text-gray-600">Sign in to access your account</p>
+                <h1 className="text-3xl font-bold mb-2">
+                  {loginType === 'admin' ? 'Admin Login' : 'Member Login'}
+                </h1>
+                <p className="text-gray-600">
+                  {loginType === 'admin' 
+                    ? 'Sign in to access the admin dashboard' 
+                    : 'Sign in to access your member dashboard'}
+                </p>
               </div>
               
               <form onSubmit={handleLogin} className="space-y-6">
@@ -148,11 +179,28 @@ const Login = () => {
                   {isSubmitting ? "Signing in..." : "Sign In"}
                 </Button>
                 
-                <div className="text-center mt-6">
+                {loginType === 'member' && (
+                  <div className="text-center mt-6">
+                    <p className="text-gray-600">
+                      Don't have an account?{" "}
+                      <Link to="/signup" className="text-neogym-red hover:underline">
+                        Sign Up
+                      </Link>
+                    </p>
+                  </div>
+                )}
+                
+                <div className="text-center mt-2">
                   <p className="text-gray-600">
-                    Don't have an account?{" "}
-                    <Link to="/signup" className="text-neogym-red hover:underline">
-                      Sign Up
+                    {loginType === 'admin' 
+                      ? "Need to access member login?" 
+                      : "Need to access admin panel?"}
+                    {" "}
+                    <Link 
+                      to={loginType === 'admin' ? "/login" : "/login?type=admin"} 
+                      className="text-neogym-red hover:underline"
+                    >
+                      {loginType === 'admin' ? "Member Login" : "Admin Login"}
                     </Link>
                   </p>
                 </div>
@@ -161,8 +209,11 @@ const Login = () => {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <p className="text-center text-gray-500 text-sm mb-4">Demo Accounts:</p>
                 <div className="space-y-2 text-sm text-gray-600">
-                  <p>User: user@example.com / password</p>
-                  <p>Admin: admin@example.com / admin</p>
+                  {loginType === 'member' ? (
+                    <p>Member: user@example.com / password</p>
+                  ) : (
+                    <p>Admin: admin@example.com / admin</p>
+                  )}
                 </div>
               </div>
             </motion.div>
