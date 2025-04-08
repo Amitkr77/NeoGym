@@ -168,42 +168,44 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="text-white hover:text-neogym-red transition-colors flex items-center border px-4 py-2 rounded-lg">
-                  Login <ChevronDown className="ml-1 h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-neogym-dark border-neogym-gray">
-                <DropdownMenuItem asChild>
-                  <Link
-                    to="/login"
-                    className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                  >
-                    Member Login
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link
-                    to="/login?type=admin"
-                    className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                  >
-                    Admin Access
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="text-white hover:text-neogym-red transition-colors flex items-center border px-4 py-2 rounded-lg">
+                    Login <ChevronDown className="ml-1 h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-neogym-dark border-neogym-gray">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      to="/login"
+                      className="text-white hover:bg-neogym-gray/50 cursor-pointer"
+                    >
+                      Member Login
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link
+                      to="/login?type=admin"
+                      className="text-white hover:bg-neogym-gray/50 cursor-pointer"
+                    >
+                      Admin Access
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-          {/* Join Now Button - Desktop */}
-          <div className="hidden lg:block">
-            <Button 
-              className="bg-neogym-red hover:bg-neogym-red/90 text-white font-bold"
-              onClick={handleJoinNow}
-            >
-              Join Now
-            </Button>
-          </div>
+              {/* Only show Join Now when not logged in */}
+              <div className="hidden lg:block">
+                <Button 
+                  className="bg-neogym-red hover:bg-neogym-red/90 text-white font-bold"
+                  onClick={handleJoinNow}
+                >
+                  Join Now
+                </Button>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -314,19 +316,17 @@ const Navbar = () => {
                 >
                   Admin Login
                 </Link>
+                {/* Only show Join Now in mobile menu when not logged in */}
+                <Button 
+                  className="bg-neogym-red hover:bg-neogym-red/90 text-white font-bold w-full"
+                  onClick={() => {
+                    navigate('/signup');
+                    toggleMenu();
+                  }}
+                >
+                  Join Now
+                </Button>
               </>
-            )}
-            
-            {!isLoggedIn && (
-              <Button 
-                className="bg-neogym-red hover:bg-neogym-red/90 text-white font-bold w-full"
-                onClick={() => {
-                  navigate('/signup');
-                  toggleMenu();
-                }}
-              >
-                Join Now
-              </Button>
             )}
           </div>
         </div>

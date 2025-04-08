@@ -1,7 +1,12 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '../ui/card';
-import { Star } from 'lucide-react';
+import { Star, MessageSquarePlus } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog';
+import { useToast } from '@/hooks/use-toast';
+import { Textarea } from '../ui/textarea';
+import { useNavigate } from 'react-router-dom';
 
 const testimonials = [
   {
@@ -35,6 +40,51 @@ const testimonials = [
 ];
 
 const Reviews = () => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
+  const [reviewText, setReviewText] = useState("");
+  const [rating, setRating] = useState(5);
+  
+  useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('auth_token');
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleAddReview = () => {
+    if (!isLoggedIn) {
+      // Redirect to login page if not logged in
+      navigate('/login?redirect=reviews');
+      return;
+    }
+    
+    setIsReviewDialogOpen(true);
+  };
+
+  const handleSubmitReview = () => {
+    if (reviewText.trim().length === 0) {
+      toast({
+        title: "Review text is required",
+        description: "Please share your experience in the review.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Here we would normally submit the review to a backend
+    // For now we'll just show a success toast
+    toast({
+      title: "Review submitted",
+      description: "Thank you for sharing your experience! Your review is pending approval.",
+    });
+    
+    setIsReviewDialogOpen(false);
+    setReviewText("");
+    setRating(5);
+  };
+
   return (
     <section className="section-padding bg-white">
       <div className="container mx-auto">
@@ -45,6 +95,13 @@ const Reviews = () => {
           <p className="text-gray-600 max-w-2xl mx-auto">
             Don't just take our word for it. Here's what our members have to say about their experience at NeoGym.
           </p>
+          <Button 
+            className="mt-4 bg-neogym-red hover:bg-neogym-red/90 flex items-center gap-2"
+            onClick={handleAddReview}
+          >
+            <MessageSquarePlus size={16} />
+            Share Your Experience
+          </Button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -85,10 +142,64 @@ const Reviews = () => {
         </div>
         
         <div className="text-center mt-12">
-          <a href="#" className="inline-block text-neogym-red font-bold hover:underline">
+          <a href="/reviews" className="inline-block text-neogym-red font-bold hover:underline">
             View All Reviews
           </a>
         </div>
+
+        {/* Review Dialog */}
+        <Dialog open={isReviewDialogOpen} onOpenChange={setIsReviewDialogOpen}>
+          <DialogContent className="sm:max-w-md">
+            <DialogTitle>Share Your Experience</DialogTitle>
+            <DialogDescription>
+              Let others know about your experience at NeoGym. Your review will be published after approval.
+            </DialogDescription>
+            
+            <div className="space-y-4 py-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Rating</label>
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setRating(star)}
+                      className="focus:outline-none"
+                    >
+                      <Star 
+                        className={`h-6 w-6 ${
+                          star <= rating 
+                            ? 'text-yellow-400 fill-current' 
+                            : 'text-gray-300'
+                        }`} 
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <label htmlFor="review" className="block text-sm font-medium mb-2">Your Review</label>
+                <Textarea
+                  id="review"
+                  placeholder="Share your experience with NeoGym..."
+                  rows={5}
+                  value={reviewText}
+                  onChange={(e) => setReviewText(e.target.value)}
+                />
+              </div>
+            </div>
+            
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setIsReviewDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="button" className="bg-neogym-red hover:bg-neogym-red/90" onClick={handleSubmitReview}>
+                Submit Review
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
