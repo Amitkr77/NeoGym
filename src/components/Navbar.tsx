@@ -24,7 +24,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-white text-2xl font-heading font-bold flex items-center"
+          className="text-white text-2xl font-heading font-bold flex items-center "
         >
           <span className="text-neogym-red">NEO</span>GYM
         </Link>
@@ -33,85 +33,24 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-6">
           <Link
             to="/"
-            className="text-white hover:text-neogym-red transition-colors"
+            className="text-white hover:text-neogym-red transition-colors tracking-widest"
           >
             Home
           </Link>
-         
-          {/* Facilities & Pricing Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="text-white hover:text-neogym-red transition-colors flex items-center">
-                Facilities & Pricing <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-neogym-dark border-neogym-gray">
-              <DropdownMenuItem asChild>
-                <Link
-                  to="/facilities"
-                  className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                >
-                  Our Facilities
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  to="/pricing"
-                  className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                >
-                  Membership & Pricing
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  to="/classes"
-                  className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                >
-                  Class Schedule
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
 
-          {/* Blog Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="text-white hover:text-neogym-red transition-colors flex items-center">
-                Resources <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-neogym-dark border-neogym-gray">
-              <DropdownMenuItem asChild>
-                <Link
-                  to="/blog"
-                  className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                >
-                  Blog
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  to="/reviews"
-                  className="text-white hover:bg-neogym-gray/50 cursor-pointer"
-                >
-                  Member Reviews
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Blog  */}
           <Link
-            to="/about"
-            className="text-white hover:text-neogym-red transition-colors"
+            to="/blog"
+            className="text-white hover:text-neogym-red transition-colors tracking-widest"
           >
-            About Us
+            Blog
           </Link>
-
 
           <Link
             to="/contact"
-            className="text-white hover:text-neogym-red transition-colors"
+            className="text-white hover:text-neogym-red transition-colors tracking-widest"
           >
-            Contact Us
+            Contact
           </Link>
         </div>
 
