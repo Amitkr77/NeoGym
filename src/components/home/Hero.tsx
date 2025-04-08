@@ -46,7 +46,7 @@ const Hero = () => {
           className="absolute w-full h-full object-cover"
           style={{ objectPosition: 'center' }}
         >
-          <source src="https://player.vimeo.com/external/414182181.sd.mp4?s=ca8f91bdf5f87381468b7b745d142ce23a698b3a&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/855828/855828-hd_1920_1080_30fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <button 

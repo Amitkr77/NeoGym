@@ -18,7 +18,7 @@ const facilities = [
   {
     title: "Group Classes",
     description: "Energetic group sessions including HIIT, yoga, spinning, and more.",
-    image: "https://images.unsplash.com/photo-1571019113664-8a70d82d8e2a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+    image: "https://images.unsplash.com/photo-1602827114685-efbb2717da9f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     title: "Recovery Zone",

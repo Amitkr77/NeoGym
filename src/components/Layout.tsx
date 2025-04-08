@@ -10,11 +10,11 @@ type LayoutProps = {
   fullWidth?: boolean;
 };
 
-const Layout = ({ children, showPromoBanner = false, hideFooter = false, fullWidth = false }: LayoutProps) => {
+const Layout = ({ children, showPromoBanner = false, hideFooter = false, fullWidth = true }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className={`flex-grow pt-16 ${fullWidth ? '' : 'container mx-auto px-4'}`}> {/* Added padding-top to account for fixed navbar */}
+      <main className={`flex-grow ${fullWidth ? '' : 'container mx-auto px-4'}`}> {/* Added padding-top to account for fixed navbar */}
         {children}
       </main>
       {!hideFooter && <Footer />}
@@ -23,3 +23,5 @@ const Layout = ({ children, showPromoBanner = false, hideFooter = false, fullWid
 };
 
 export default Layout;
+
+
