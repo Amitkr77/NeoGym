@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Menu, X, ChevronDown, LogOut } from "lucide-react";
+import { Menu, X, ChevronDown, LogOut, ArrowLeft } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -62,6 +62,20 @@ const Navbar = () => {
             className="text-white hover:text-neogym-red transition-colors tracking-widest"
           >
             Home
+          </Link>
+
+          <Link
+            to="/facilities"
+            className="text-white hover:text-neogym-red transition-colors tracking-widest"
+          >
+            Facilities
+          </Link>
+
+          <Link
+            to="/pricing"
+            className="text-white hover:text-neogym-red transition-colors tracking-widest"
+          >
+            Pricing
           </Link>
 
           {/* Blog  */}
@@ -171,13 +185,6 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/about"
-              className="text-white hover:text-neogym-red transition-colors px-4 py-2"
-              onClick={toggleMenu}
-            >
-              About Us
-            </Link>
-            <Link
               to="/facilities"
               className="text-white hover:text-neogym-red transition-colors px-4 py-2"
               onClick={toggleMenu}
@@ -192,25 +199,11 @@ const Navbar = () => {
               Pricing
             </Link>
             <Link
-              to="/classes"
-              className="text-white hover:text-neogym-red transition-colors px-4 py-2"
-              onClick={toggleMenu}
-            >
-              Classes
-            </Link>
-            <Link
               to="/blog"
               className="text-white hover:text-neogym-red transition-colors px-4 py-2"
               onClick={toggleMenu}
             >
               Blog
-            </Link>
-            <Link
-              to="/reviews"
-              className="text-white hover:text-neogym-red transition-colors px-4 py-2"
-              onClick={toggleMenu}
-            >
-              Reviews
             </Link>
             <Link
               to="/contact"
