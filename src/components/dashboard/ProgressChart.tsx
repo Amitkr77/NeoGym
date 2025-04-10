@@ -50,7 +50,7 @@ const ProgressChart = () => {
   const [chartPeriod, setChartPeriod] = useState("6m");
   
   return (
-    <Card className="w-full">
+    <Card className="w-full h-full">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>Fitness Progress</CardTitle>

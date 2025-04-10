@@ -21,6 +21,10 @@ import Pricing from "./pages/Pricing";
 import Reviews from "./pages/Reviews";
 import ReviewManagement from "./pages/admin/ReviewManagement";
 import TourManagement from "./pages/admin/TourManagement";
+import HelpCenter from "./components/dashboard/HelpCenter";
+import DashboardTabs from "./components/dashboard/DashboardTabs";
+import FitnessTab from "./components/dashboard/fitness/FitnessTab";
+import PaymentTab from "./components/dashboard/payment/PaymentTab";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,9 @@ const App = () => (
           {/* These routes will be implemented in the future */}
           <Route path="/classes" element={<NotFound />} />
           <Route path="/sitemap" element={<NotFound />} />
+          <Route path="/help" element={<DashboardTabs />} />
+          <Route path="/pay" element={<PaymentTab/>} />
+          <Route path="/fit" element={<FitnessTab/>} />
           
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
