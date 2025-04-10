@@ -14,7 +14,7 @@ const FloatingHomeButton = () => {
         <TooltipTrigger asChild>
           <Button
             onClick={() => navigate("/")}
-            className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-neogym-red hover:bg-neogym-red/90 shadow-lg flex items-center justify-center"
+            className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-neogym-red hover:bg-neogym-red/90 shadow-lg flex items-center justify-center z-50"
             aria-label="Go to home page"
           >
             <Home className="h-5 w-5 text-white" />
