@@ -36,7 +36,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import Layout from '@/components/Layout';
 
 // Sample admin data
 const adminData = {
@@ -384,7 +383,6 @@ const AdminDashboard = () => {
   };
 
   return (
-    <Layout hideFooter fullWidth>
       <div className="flex h-screen bg-gray-100">
         {/* Sidebar */}
         <motion.aside 
@@ -534,7 +532,7 @@ const AdminDashboard = () => {
               {/* Stats Overview */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                 <motion.div 
-                  className="bg-white rounded-lg shadow-md overflow-hidden"
+                  className="bg-white rounded-lg  overflow-hidden"
                   whileHover={{ y: -5 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
@@ -1935,7 +1933,6 @@ const AdminDashboard = () => {
           )}
         </main>
       </div>
-    </Layout>
   );
 };
 
