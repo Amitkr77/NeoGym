@@ -25,6 +25,7 @@ import HelpCenter from "./components/dashboard/HelpCenter";
 import DashboardTabs from "./components/dashboard/DashboardTabs";
 import FitnessTab from "./components/dashboard/fitness/FitnessTab";
 import PaymentTab from "./components/dashboard/payment/PaymentTab";
+import Sitemap from "./components/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/reviews" element={<Reviews />} />
+          <Route path="/sitemap" element={<Sitemap />} />
           
           {/* Map the old routes to the new consolidated ones */}
           <Route path="/member-login" element={<Login />} />
@@ -58,7 +60,6 @@ const App = () => (
           
           {/* These routes will be implemented in the future */}
           <Route path="/classes" element={<NotFound />} />
-          <Route path="/sitemap" element={<NotFound />} />
           <Route path="/help" element={<DashboardTabs />} />
           <Route path="/pay" element={<PaymentTab/>} />
           <Route path="/fit" element={<FitnessTab/>} />
