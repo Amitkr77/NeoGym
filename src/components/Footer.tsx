@@ -79,7 +79,7 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} NeoGym. All rights reserved.</p>
           <div className="mt-2 space-x-4">
             <Link to="/terms" className="hover:text-neogym-red transition-colors">Terms of Service</Link>
-            <Link to="/privacy" className="hover:text-neogym-red transition-colors">Privacy Policy</Link>
+            <Link to="/privacy-policy" className="hover:text-neogym-red transition-colors">Privacy Policy</Link>
             <Link to="/sitemap" className="hover:text-neogym-red transition-colors">Sitemap</Link>
           </div>
         </div>
