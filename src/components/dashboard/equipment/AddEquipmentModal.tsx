@@ -1,4 +1,3 @@
-
 import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -42,18 +41,19 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "@/hooks/use-toast";
 
+// Zod schema for validation
 const equipmentFormSchema = z.object({
   name: z.string().min(3, {
     message: "Equipment name must be at least 3 characters.",
   }),
   type: z.enum([
-    "cardio", 
-    "strength", 
-    "flexibility", 
-    "weightlifting", 
+    "cardio",
+    "strength",
+    "flexibility",
+    "weightlifting",
     "crossfit",
     "recovery",
-    "other"
+    "other",
   ]),
   description: z.string().optional(),
   purchaseDate: z.date({
@@ -74,21 +74,19 @@ const equipmentFormSchema = z.object({
     "studio_2",
     "functional_area",
     "recovery_room",
-    "storage"
+    "storage",
   ]),
-  status: z.enum([
-    "active",
-    "maintenance",
-    "out_of_order",
-    "on_order"
-  ]),
+  status: z.enum(["active", "maintenance", "out_of_order", "on_order"]),
 });
 
 type EquipmentFormValues = z.infer<typeof equipmentFormSchema>;
 
-const AddEquipmentModal = () => {
-  const [open, setOpen] = React.useState(false);
+interface AddEquipmentModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;  // Ensure this is a function that accepts a boolean
+}
 
+const AddEquipmentModal = ({ open, onOpenChange }: AddEquipmentModalProps) => {
   const form = useForm<EquipmentFormValues>({
     resolver: zodResolver(equipmentFormSchema),
     defaultValues: {
@@ -111,17 +109,11 @@ const AddEquipmentModal = () => {
       description: `"${data.name}" has been added to inventory.`,
     });
     form.reset();
-    setOpen(false);
+    onOpenChange(false);  // Close the modal after submission
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-neogym-red hover:bg-neogym-red/90">
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add Equipment
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Add New Equipment</DialogTitle>
@@ -129,9 +121,11 @@ const AddEquipmentModal = () => {
             Add a new piece of equipment to the gym inventory.
           </DialogDescription>
         </DialogHeader>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
+              {/* Equipment Name Field */}
               <FormField
                 control={form.control}
                 name="name"
@@ -145,6 +139,8 @@ const AddEquipmentModal = () => {
                   </FormItem>
                 )}
               />
+
+              {/* Equipment Type Select */}
               <FormField
                 control={form.control}
                 name="type"
@@ -175,7 +171,8 @@ const AddEquipmentModal = () => {
                 )}
               />
             </div>
-            
+
+            {/* Description Field */}
             <FormField
               control={form.control}
               name="description"
@@ -193,7 +190,8 @@ const AddEquipmentModal = () => {
                 </FormItem>
               )}
             />
-            
+
+            {/* Manufacturer and Serial Number Fields */}
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -222,7 +220,8 @@ const AddEquipmentModal = () => {
                 )}
               />
             </div>
-            
+
+            {/* Cost and Purchase Date Fields */}
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -251,15 +250,9 @@ const AddEquipmentModal = () => {
                         <FormControl>
                           <Button
                             variant={"outline"}
-                            className={`w-full pl-3 text-left font-normal ${
-                              !field.value && "text-muted-foreground"
-                            }`}
+                            className={`w-full pl-3 text-left font-normal ${!field.value && "text-muted-foreground"}`}
                           >
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Pick a date</span>
-                            )}
+                            {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                           </Button>
                         </FormControl>
@@ -278,7 +271,8 @@ const AddEquipmentModal = () => {
                 )}
               />
             </div>
-            
+
+            {/* Location and Status Fields */}
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -337,7 +331,8 @@ const AddEquipmentModal = () => {
                 )}
               />
             </div>
-            
+
+            {/* Footer with Submit Button */}
             <DialogFooter>
               <Button type="submit">Add Equipment</Button>
             </DialogFooter>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -13,7 +12,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -63,9 +62,12 @@ const classFormSchema = z.object({
 
 type ClassFormValues = z.infer<typeof classFormSchema>;
 
-const AddClassModal = () => {
-  const [open, setOpen] = React.useState(false);
+interface AddClassModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
+const AddClassModal = ({ open, onOpenChange }: AddClassModalProps) => {
   const form = useForm<ClassFormValues>({
     resolver: zodResolver(classFormSchema),
     defaultValues: {
@@ -87,17 +89,11 @@ const AddClassModal = () => {
       description: `"${data.name}" has been added to the schedule.`,
     });
     form.reset();
-    setOpen(false);
+    onOpenChange(false); // Close the modal after submission
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-neogym-red hover:bg-neogym-red/90">
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add New Class
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Add New Fitness Class</DialogTitle>
@@ -135,7 +131,7 @@ const AddClassModal = () => {
                 )}
               />
             </div>
-            
+
             <FormField
               control={form.control}
               name="description"
@@ -153,7 +149,7 @@ const AddClassModal = () => {
                 </FormItem>
               )}
             />
-            
+
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -183,7 +179,7 @@ const AddClassModal = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="difficulty"
@@ -210,7 +206,7 @@ const AddClassModal = () => {
                 )}
               />
             </div>
-            
+
             <div className="grid grid-cols-3 gap-4">
               <FormField
                 control={form.control}
@@ -229,7 +225,7 @@ const AddClassModal = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="duration"
@@ -246,7 +242,7 @@ const AddClassModal = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="startDate"
@@ -285,7 +281,7 @@ const AddClassModal = () => {
                 )}
               />
             </div>
-            
+
             <DialogFooter>
               <Button type="submit">Add Class</Button>
             </DialogFooter>

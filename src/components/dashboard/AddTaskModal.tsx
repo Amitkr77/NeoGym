@@ -1,4 +1,3 @@
-
 import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -10,10 +9,9 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,11 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "@/hooks/use-toast";
 
@@ -55,9 +49,12 @@ const taskFormSchema = z.object({
 
 type TaskFormValues = z.infer<typeof taskFormSchema>;
 
-const AddTaskModal = () => {
-  const [open, setOpen] = React.useState(false);
+interface AddTaskModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
+const AddTaskModal = ({ open, onOpenChange }: AddTaskModalProps) => {
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskFormSchema),
     defaultValues: {
@@ -75,17 +72,11 @@ const AddTaskModal = () => {
       description: `"${data.title}" has been added to your tasks.`,
     });
     form.reset();
-    setOpen(false);
+    onOpenChange(false); // Close the modal after successful task addition
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="bg-neogym-red hover:bg-neogym-red/90">
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Add Task
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
           <DialogTitle>Add New Task</DialogTitle>

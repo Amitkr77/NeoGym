@@ -1,9 +1,8 @@
-
 import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CalendarIcon, DollarSign, Edit } from "lucide-react";
+import { CalendarIcon, DollarSign } from "lucide-react";
 import { format } from "date-fns";
 
 import {
@@ -19,7 +18,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -48,13 +46,13 @@ const equipmentFormSchema = z.object({
     message: "Equipment name must be at least 3 characters.",
   }),
   type: z.enum([
-    "cardio", 
-    "strength", 
-    "flexibility", 
-    "weightlifting", 
+    "cardio",
+    "strength",
+    "flexibility",
+    "weightlifting",
     "crossfit",
     "recovery",
-    "other"
+    "other",
   ]),
   description: z.string().optional(),
   purchaseDate: z.date({
@@ -75,76 +73,70 @@ const equipmentFormSchema = z.object({
     "studio_2",
     "functional_area",
     "recovery_room",
-    "storage"
+    "storage",
   ]),
-  status: z.enum([
-    "active",
-    "maintenance",
-    "out_of_order",
-    "on_order"
-  ]),
+  status: z.enum(["active", "maintenance", "out_of_order", "on_order"]),
 });
 
 type EquipmentFormValues = z.infer<typeof equipmentFormSchema>;
 
-type EditEquipmentModalProps = {
+interface EditEquipmentModalProps {
   equipment: {
     id: string;
     name: string;
+    location: string;
     type: string;
     description?: string;
     purchaseDate: Date;
     cost: number;
     manufacturer: string;
     serialNumber?: string;
-    location: string;
     status: string;
   };
   onSave?: (id: string, data: EquipmentFormValues) => void;
-};
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
 
-const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
-  const [open, setOpen] = React.useState(false);
-
+const EditEquipmentModal = ({
+  equipment,
+  onSave,
+  open,
+  onOpenChange,
+}: EditEquipmentModalProps) => {
   const form = useForm<EquipmentFormValues>({
     resolver: zodResolver(equipmentFormSchema),
     defaultValues: {
       name: equipment.name,
-      type: equipment.type as any,
+      type: equipment.type as any,  // Ensure that 'type' is set properly
       description: equipment.description || "",
       purchaseDate: equipment.purchaseDate,
       cost: equipment.cost,
       manufacturer: equipment.manufacturer,
       serialNumber: equipment.serialNumber || "",
-      location: equipment.location as any,
-      status: equipment.status as any,
+      location: equipment.location as any,  // Ensure that 'location' is set properly
+      status: equipment.status as any,  // Ensure that 'status' is set properly
     },
   });
 
   function onSubmit(data: EquipmentFormValues) {
     // In a real app, this would update the equipment in the database
     console.log("Updated equipment:", { id: equipment.id, ...data });
-    
+
     if (onSave) {
       onSave(equipment.id, data);
     }
-    
+
     toast({
       title: "Equipment updated",
       description: `"${data.name}" has been updated successfully.`,
     });
-    
-    setOpen(false);
+
+    onOpenChange(false);  // Close the modal after saving changes
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Edit className="h-4 w-4 mr-2" />
-          Edit
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Edit Equipment</DialogTitle>
@@ -152,6 +144,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
             Update equipment information and details.
           </DialogDescription>
         </DialogHeader>
+
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -162,7 +155,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                   <FormItem>
                     <FormLabel>Equipment Name</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input placeholder="e.g., Treadmill Pro X7" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -187,7 +180,9 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                         <SelectItem value="cardio">Cardio</SelectItem>
                         <SelectItem value="strength">Strength</SelectItem>
                         <SelectItem value="flexibility">Flexibility</SelectItem>
-                        <SelectItem value="weightlifting">Weight Lifting</SelectItem>
+                        <SelectItem value="weightlifting">
+                          Weight Lifting
+                        </SelectItem>
                         <SelectItem value="crossfit">CrossFit</SelectItem>
                         <SelectItem value="recovery">Recovery</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
@@ -198,7 +193,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                 )}
               />
             </div>
-            
+
             <FormField
               control={form.control}
               name="description"
@@ -206,16 +201,13 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea
-                      className="resize-none"
-                      {...field}
-                    />
+                    <Textarea className="resize-none" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            
+
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -224,7 +216,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                   <FormItem>
                     <FormLabel>Manufacturer</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input placeholder="e.g., Life Fitness" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -237,14 +229,14 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                   <FormItem>
                     <FormLabel>Serial Number</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input placeholder="Serial number (optional)" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -255,7 +247,13 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                     <FormControl>
                       <div className="flex items-center">
                         <DollarSign className="h-4 w-4 mr-2 text-muted-foreground" />
-                        <Input type="number" min={0} step={0.01} {...field} />
+                        <Input
+                          type="number"
+                          min={0}
+                          step={0.01}
+                          {...field}
+                          placeholder="Cost"
+                        />
                       </div>
                     </FormControl>
                     <FormMessage />
@@ -300,7 +298,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                 )}
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <FormField
                 control={form.control}
@@ -323,8 +321,12 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                         <SelectItem value="weight_room">Weight Room</SelectItem>
                         <SelectItem value="studio_1">Studio 1</SelectItem>
                         <SelectItem value="studio_2">Studio 2</SelectItem>
-                        <SelectItem value="functional_area">Functional Area</SelectItem>
-                        <SelectItem value="recovery_room">Recovery Room</SelectItem>
+                        <SelectItem value="functional_area">
+                          Functional Area
+                        </SelectItem>
+                        <SelectItem value="recovery_room">
+                          Recovery Room
+                        </SelectItem>
                         <SelectItem value="storage">Storage</SelectItem>
                       </SelectContent>
                     </Select>
@@ -350,7 +352,9 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                       <SelectContent>
                         <SelectItem value="active">Active</SelectItem>
                         <SelectItem value="maintenance">Maintenance</SelectItem>
-                        <SelectItem value="out_of_order">Out of Order</SelectItem>
+                        <SelectItem value="out_of_order">
+                          Out of Order
+                        </SelectItem>
                         <SelectItem value="on_order">On Order</SelectItem>
                       </SelectContent>
                     </Select>
@@ -359,7 +363,7 @@ const EditEquipmentModal = ({ equipment, onSave }: EditEquipmentModalProps) => {
                 )}
               />
             </div>
-            
+
             <DialogFooter>
               <Button type="submit">Save Changes</Button>
             </DialogFooter>

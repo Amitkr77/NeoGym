@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,10 +20,6 @@ import Pricing from "./pages/Pricing";
 import Reviews from "./pages/Reviews";
 import ReviewManagement from "./pages/admin/ReviewManagement";
 import TourManagement from "./pages/admin/TourManagement";
-import HelpCenter from "./components/dashboard/HelpCenter";
-import DashboardTabs from "./components/dashboard/DashboardTabs";
-import FitnessTab from "./components/dashboard/fitness/FitnessTab";
-import PaymentTab from "./components/dashboard/payment/PaymentTab";
 import Sitemap from "./components/Sitemap";
 
 const queryClient = new QueryClient();
@@ -53,17 +48,14 @@ const App = () => (
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/sitemap" element={<Sitemap />} />
-          
+
           {/* Map the old routes to the new consolidated ones */}
           <Route path="/member-login" element={<Login />} />
           <Route path="/admin-login" element={<Login />} />
-          
+
           {/* These routes will be implemented in the future */}
           <Route path="/classes" element={<NotFound />} />
-          <Route path="/help" element={<DashboardTabs />} />
-          <Route path="/pay" element={<PaymentTab/>} />
-          <Route path="/fit" element={<FitnessTab/>} />
-          
+
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
