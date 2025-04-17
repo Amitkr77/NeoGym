@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -20,7 +21,10 @@ import Pricing from "./pages/Pricing";
 import Reviews from "./pages/Reviews";
 import ReviewManagement from "./pages/admin/ReviewManagement";
 import TourManagement from "./pages/admin/TourManagement";
+import EquipmentManagement from "./pages/admin/EquipmentManagement";
+import Equipment from "./pages/Equipment";
 import Sitemap from "./components/Sitemap";
+import HelpCenter from "./components/dashboard/HelpCenter";
 
 const queryClient = new QueryClient();
 
@@ -42,12 +46,15 @@ const App = () => (
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/reviews" element={<ReviewManagement />} />
           <Route path="/admin/tours" element={<TourManagement />} />
+          <Route path="/admin/equipment" element={<EquipmentManagement />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/reviews" element={<Reviews />} />
+          <Route path="/equipment" element={<Equipment />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/help-center" element={<HelpCenter />} />
 
           {/* Map the old routes to the new consolidated ones */}
           <Route path="/member-login" element={<Login />} />

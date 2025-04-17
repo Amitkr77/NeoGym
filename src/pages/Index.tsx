@@ -10,6 +10,7 @@ import FacilitiesPricing from '../components/home/FacilitiesPricing';
 import Reviews from '../components/home/Reviews';
 import BlogSection from '../components/home/BlogSection';
 import CallToAction from '../components/home/CallToAction';
+import EquipmentFeature from '../components/home/EquipmentFeature';
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <WhyChooseUs />
       <AboutSection />
       <Coaches />
+      <EquipmentFeature />
       <FacilitiesPricing />
       <Reviews />
       <BlogSection />
