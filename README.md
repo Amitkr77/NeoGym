@@ -1,73 +1,96 @@
-# Welcome to your Lovable project
+# NeoGym - Gym Management System
 
-## Project info
+**NeoGym** is a modern gym management system built with **Vite**, **TypeScript**, **React**, **shadcn-ui**, and **Tailwind CSS**. The application allows for efficient gym activity management with two roles: **Admin** and **Member**.
 
-**URL**: https://lovable.dev/projects/e3707fb7-335a-476a-9414-850ae9039576
+- **Admin**: Manages overall gym activities, including user accounts, progress tracking, and more.
+- **Member**: Views personal progress and interacts with the system to track fitness goals.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **Vite**: A fast build tool that provides fast development experience.
+- **TypeScript**: A superset of JavaScript that adds type safety, improving the development process.
+- **React**: A popular JavaScript library for building user interfaces.
+- **Shadcn-UI**: A UI library for building beautiful and accessible components.
+- **Tailwind CSS**: A utility-first CSS framework that allows for rapid UI development.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e3707fb7-335a-476a-9414-850ae9039576) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
 
-**Use your preferred IDE**
+### Admin Features:
+- Manage member accounts and profiles
+- View overall gym statistics
+- Monitor and manage gym activities (e.g., workouts, schedules)
+- Approve or reject member requests
+- Customize gym settings and configurations
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Member Features:
+- Track personal fitness progress (e.g., workouts, goals)
+- View workout history
+- Set and track fitness goals
+- Access personalized recommendations based on progress
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+To set up the project locally, follow these steps:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 1. Clone the repository
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+git clone https://github.com/your-username/neogym.git
+cd neogym
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 2. Install dependencies
+
+Ensure you have [Node.js](https://nodejs.org/) installed. Then, run:
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+This will start the Vite development server. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## Usage
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. **Admin**: To manage gym activities and users, you must log in as an admin. You can access the admin dashboard to perform various management tasks.
+2. **Member**: Members can view their personal fitness progress, set goals, and track their workout history.
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## Contributing
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+We welcome contributions! If you'd like to contribute, please fork the repository and submit a pull request. Make sure to follow the code style and conventions used in the project.
 
-## How can I deploy this project?
+### Steps to contribute:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature-branch`)
+3. Make your changes and commit them
+4. Push to your branch (`git push origin feature-branch`)
+5. Open a pull request
 
-Simply open [Lovable](https://lovable.dev/projects/e3707fb7-335a-476a-9414-850ae9039576) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## License
 
-Yes it is!
+This project is licensed under the [MIT License](LICENSE).
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Contact
+
+For any inquiries, please reach out to [your-email@example.com].
+
+To download the file, simply copy the content above into a new file named `README.md` in the root of your project directory. If you're using GitHub, you can create a new file in your repository and paste this content there.
