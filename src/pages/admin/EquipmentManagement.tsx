@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -42,7 +41,6 @@ import AddEquipmentModal from '@/components/dashboard/equipment/AddEquipmentModa
 import EditEquipmentModal from '@/components/dashboard/equipment/EditEquipmentModal';
 import ScheduleMaintenanceModal from '@/components/dashboard/equipment/ScheduleMaintenanceModal';
 
-// Sample equipment data - in a real application, this would come from an API or database
 const dummyEquipment = [
   {
     id: 1,
@@ -93,13 +91,11 @@ const EquipmentManagement = () => {
   const [equipment, setEquipment] = useState(dummyEquipment);
   const [selectedEquipment, setSelectedEquipment] = useState<any | null>(null);
   
-  // Modal states
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isMaintenanceModalOpen, setIsMaintenanceModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
-  // Filter equipment based on search and filters
   const filteredEquipment = equipment.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          item.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -110,7 +106,6 @@ const EquipmentManagement = () => {
   });
 
   const handleAddEquipment = (newEquipment: any) => {
-    // In a real app, this would make an API call to save the equipment
     const equipmentWithId = {
       ...newEquipment,
       id: equipment.length + 1,
@@ -123,7 +118,6 @@ const EquipmentManagement = () => {
   };
 
   const handleEditEquipment = (updatedEquipment: any) => {
-    // In a real app, this would make an API call to update the equipment
     setEquipment(equipment.map(item => 
       item.id === updatedEquipment.id ? updatedEquipment : item
     ));
@@ -134,7 +128,6 @@ const EquipmentManagement = () => {
   };
 
   const handleScheduleMaintenance = (equipmentId: number, maintenanceData: any) => {
-    // In a real app, this would make an API call to schedule maintenance
     setEquipment(equipment.map(item => 
       item.id === equipmentId 
         ? { 
@@ -154,7 +147,6 @@ const EquipmentManagement = () => {
   const handleDeleteEquipment = () => {
     if (!selectedEquipment) return;
     
-    // In a real app, this would make an API call to delete the equipment
     setEquipment(equipment.filter(item => item.id !== selectedEquipment.id));
     setIsDeleteDialogOpen(false);
     toast({
@@ -240,7 +232,7 @@ const EquipmentManagement = () => {
                       <Badge 
                         variant={
                           item.status === 'operational' ? 'default' : 
-                          item.status === 'maintenance' ? 'warning' : 'destructive'
+                          item.status === 'maintenance' ? 'secondary' : 'destructive'
                         }
                       >
                         {item.status === 'operational' 
@@ -303,34 +295,26 @@ const EquipmentManagement = () => {
           </Table>
         </div>
 
-        {/* Add Equipment Modal */}
         <AddEquipmentModal 
           open={isAddModalOpen} 
           onOpenChange={setIsAddModalOpen}
-          onSubmit={handleAddEquipment}
         />
 
-        {/* Edit Equipment Modal */}
         {selectedEquipment && (
           <EditEquipmentModal
             open={isEditModalOpen}
             onOpenChange={setIsEditModalOpen}
             equipment={selectedEquipment}
-            onSubmit={handleEditEquipment}
+            onSave={handleEditEquipment}
           />
         )}
 
-        {/* Schedule Maintenance Modal */}
         {selectedEquipment && (
           <ScheduleMaintenanceModal
-            open={isMaintenanceModalOpen}
-            onOpenChange={setIsMaintenanceModalOpen}
-            equipment={selectedEquipment}
-            onSubmit={(data) => handleScheduleMaintenance(selectedEquipment.id, data)}
+            equipmentId={selectedEquipment.id.toString()}
           />
         )}
 
-        {/* Delete Confirmation Dialog */}
         <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
           <DialogContent>
             <DialogHeader>

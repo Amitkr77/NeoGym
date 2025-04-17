@@ -22,7 +22,7 @@ const EquipmentDetail = ({ equipment }: { equipment: any }) => {
             <Badge 
               variant={
                 equipment.status === 'operational' ? 'default' : 
-                equipment.status === 'maintenance' ? 'warning' : 'destructive'
+                equipment.status === 'maintenance' ? 'secondary' : 'destructive'
               }
             >
               {equipment.status === 'operational' 

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -83,7 +84,7 @@ type EquipmentFormValues = z.infer<typeof equipmentFormSchema>;
 
 interface AddEquipmentModalProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;  // Ensure this is a function that accepts a boolean
+  onOpenChange: (open: boolean) => void;
 }
 
 const AddEquipmentModal = ({ open, onOpenChange }: AddEquipmentModalProps) => {
