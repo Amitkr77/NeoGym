@@ -36,13 +36,13 @@ const coaches = [
 
 const Coaches = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white animate-fade-in">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in">
             Our <span className="text-neogym-red">Best Coaches</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{animationDelay:'0.1s',animationFillMode:'both'}}>
             Meet our team of certified fitness professionals dedicated to helping you 
             achieve your fitness goals and transform your life.
           </p>
@@ -50,7 +50,7 @@ const Coaches = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {coaches.map((coach, index) => (
-            <Card key={index} className="overflow-hidden hover-scale">
+            <Card key={index} className="overflow-hidden hover-scale animate-fade-in" style={{animationDelay:`${0.15 + index*0.08}s`,animationFillMode:'both'}}>
               <div className="h-64 overflow-hidden">
                 <img 
                   src={coach.image} 

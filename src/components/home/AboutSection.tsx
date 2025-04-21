@@ -6,19 +6,19 @@ import { Link } from 'react-router-dom';
 
 const AboutSection = () => {
   return (
-    <section className="section-padding bg-gray-100">
+    <section className="section-padding bg-gray-100 animate-fade-in">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image */}
           <div className="relative">
-            <div className="rounded-lg overflow-hidden shadow-xl">
+            <div className="rounded-lg overflow-hidden shadow-xl hover-scale animate-fade-in">
               <img 
                 src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" 
                 alt="NeoGym Facility" 
                 className="w-full h-auto object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-neogym-red text-white p-6 rounded-lg shadow-lg hidden md:block">
+            <div className="absolute -bottom-6 -right-6 bg-neogym-red text-white p-6 rounded-lg shadow-lg hidden md:block animate-fade-in">
               <p className="text-3xl font-bold">10+</p>
               <p className="text-sm uppercase">Years of Experience</p>
             </div>
@@ -26,22 +26,22 @@ const AboutSection = () => {
           
           {/* Content */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-in">
               About <span className="text-neogym-red">NeoGym</span>
             </h2>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 mb-4 animate-fade-in" style={{animationDelay:'0.1s',animationFillMode:'both'}}>
               Founded in 2013, NeoGym has been at the forefront of fitness innovation, 
               providing a premium gym experience that combines cutting-edge equipment, 
               expert guidance, and a supportive community.
             </p>
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-700 mb-6 animate-fade-in" style={{animationDelay:'0.15s',animationFillMode:'both'}}>
               Our mission is to empower individuals to transform their lives through 
               fitness. We believe that everyone deserves access to the tools, knowledge, 
               and support needed to achieve their health and fitness goals.
             </p>
             
             {/* Testimonial */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
+            <div className="bg-white p-6 rounded-lg shadow-md mb-8 animate-fade-in" style={{animationDelay:'0.2s',animationFillMode:'both'}}>
               <p className="italic text-gray-600 mb-4">
                 "NeoGym changed my life. The trainers are exceptional, and the community 
                 is so supportive. I've achieved results I never thought possible!"
@@ -56,7 +56,7 @@ const AboutSection = () => {
             </div>
             
             <Link to="/about">
-              <Button className="bg-neogym-dark hover:bg-neogym-dark/90 text-white">
+              <Button className="bg-neogym-dark hover:bg-neogym-dark/90 text-white animate-fade-in hover-scale">
                 Learn More About Us <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>

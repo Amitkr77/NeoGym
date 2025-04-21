@@ -34,20 +34,20 @@ const blogPosts = [
 
 const BlogSection = () => {
   return (
-    <section className="section-padding bg-gray-100">
+    <section className="section-padding bg-gray-100 animate-fade-in">
       <div className="container mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in">
             Latest from the <span className="text-neogym-red">Blog</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{animationDelay:'0.1s',animationFillMode:'both'}}>
             Stay updated with the latest fitness tips, success stories, and health advice from our experts.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
-            <Card key={index} className="overflow-hidden hover-scale">
+          {blogPosts.map((post, idx) => (
+            <Card key={idx} className="overflow-hidden hover-scale animate-fade-in" style={{animationDelay:`${0.15+idx*0.09}s`,animationFillMode:'both'}}>
               <div className="h-56 overflow-hidden">
                 <img 
                   src={post.image} 
@@ -79,7 +79,7 @@ const BlogSection = () => {
         
         <div className="text-center mt-12">
           <Link to="/blog">
-            <Button className="bg-neogym-dark hover:bg-neogym-dark/90 text-white">
+            <Button className="bg-neogym-dark hover:bg-neogym-dark/90 text-white animate-fade-in hover-scale">
               View All Articles <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>

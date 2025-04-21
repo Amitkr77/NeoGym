@@ -15,13 +15,12 @@ const Hero = () => {
       const token = localStorage.getItem('auth_token');
       setIsLoggedIn(!!token);
     };
-    
     checkLoginStatus();
   }, []);
 
   const toggleVideo = () => {
     setIsVideoPlaying(!isVideoPlaying);
-    
+
     const video = document.getElementById('hero-video') as HTMLVideoElement;
     if (video) {
       if (isVideoPlaying) {
@@ -63,7 +62,7 @@ const Hero = () => {
         </video>
         <button 
           onClick={toggleVideo} 
-          className="absolute bottom-5 right-5 z-20 bg-neogym-dark/50 p-2 rounded-full text-white hover:bg-neogym-dark transition-colors"
+          className="absolute bottom-5 right-5 z-20 bg-neogym-dark/50 p-2 rounded-full text-white hover:bg-neogym-dark transition-colors animate-fade-in"
           aria-label={isVideoPlaying ? "Pause background video" : "Play background video"}
         >
           {isVideoPlaying ? <Pause size={20} /> : <Play size={20} />}
@@ -71,25 +70,25 @@ const Hero = () => {
       </div>
       
       {/* Content */}
-      <div className="container mx-auto relative z-10 px-4 py-20 md:py-32">
-        <div className="max-w-3xl animate-fade-in">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+      <div className="container mx-auto relative z-10 px-4 py-20 md:py-32 animate-fade-in">
+        <div className="max-w-3xl">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-in">
             Achieve Your Fitness Goals with <span className="text-neogym-red">NeoGym</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8">
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in" style={{animationDelay:'0.1s',animationFillMode:'both'}}>
             Join our community of fitness enthusiasts, experts, and coaches. 
             Experience fitness like never before.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{animationDelay:'0.2s',animationFillMode:'both'}}>
             <Button 
-              className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-8 py-6"
+              className="bg-neogym-red hover:bg-neogym-red/90 text-white text-lg px-8 py-6 hover-scale"
               onClick={handleGetStarted}
             >
               {isLoggedIn ? "Track Your Progress" : "Get Started"}
             </Button>
             <Button 
               variant="outline" 
-              className="bg-transparent border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="bg-transparent border-white text-white hover:bg-white/10 text-lg px-8 py-6 hover-scale"
               onClick={handleTakeTour}
             >
               Take a Tour <ArrowRight className="ml-2 h-5 w-5" />

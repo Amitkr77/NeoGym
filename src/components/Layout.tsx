@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import { useLocation, Link } from 'react-router-dom';
 import { X } from 'lucide-react';
+import useScrollToTop from '@/hooks/useScrollToTop';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -15,7 +16,10 @@ type LayoutProps = {
 const Layout = ({ children, showPromoBanner = false, hideFooter = false, fullWidth = true }: LayoutProps) => {
   const [showBanner, setShowBanner] = useState(showPromoBanner);
   const location = useLocation();
-  
+
+  // Scroll to top on every route change
+  useScrollToTop();
+
   // Check if current path is a dashboard
   const isDashboard = location.pathname.includes('/dashboard') || location.pathname.includes('/admin');
 
@@ -27,7 +31,7 @@ const Layout = ({ children, showPromoBanner = false, hideFooter = false, fullWid
   return (
     <div className="min-h-screen flex flex-col">
       {showBanner && !isDashboard && (
-        <div className="bg-neogym-red text-white py-2 px-4 text-center relative">
+        <div className="bg-neogym-red text-white py-2 px-4 text-center relative animate-fade-in">
           <p>
             🔥 Special Offer: Join now and get your first month at 50% off! <Link to="/pricing" className="underline font-bold">View Plans</Link>
           </p>
