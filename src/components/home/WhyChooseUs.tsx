@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Dumbbell, 
@@ -32,13 +31,13 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-white animate-fade-in" style={{animationDelay:'0.15s',animationFillMode:'both'}}>
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <div className="text-center mb-16 animate-fade-in" style={{animationDelay:'0.16s',animationFillMode:'both'}}>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in" style={{animationDelay:'0.16s',animationFillMode:'both'}}>
             Why Choose <span className="text-neogym-red">NeoGym</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{animationDelay:'0.17s',animationFillMode:'both'}}>
             We're more than just a gym. We're a community dedicated to helping you achieve 
             your fitness goals in a motivating and supportive environment.
           </p>
@@ -48,11 +47,10 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="bg-gray-50 p-6 rounded-lg text-center hover-scale"
+              className="bg-gray-50 p-6 rounded-lg text-center hover-scale animate-fade-in"
+              style={{animationDelay: `${0.18 + index * 0.07}s`, animationFillMode:'both'}}
             >
-              <div className="flex justify-center mb-4">
-                {feature.icon}
-              </div>
+              <div className="flex justify-center mb-4">{feature.icon}</div>
               <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>

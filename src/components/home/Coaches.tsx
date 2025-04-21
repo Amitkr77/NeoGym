@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Instagram, Facebook, Twitter } from 'lucide-react';
@@ -36,13 +35,13 @@ const coaches = [
 
 const Coaches = () => {
   return (
-    <section className="section-padding bg-white animate-fade-in">
+    <section className="section-padding bg-white animate-fade-in" style={{animationDelay:'0.27s',animationFillMode:'both'}}>
       <div className="container mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in" style={{animationDelay:'0.28s',animationFillMode:'both'}}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in">
             Our <span className="text-neogym-red">Best Coaches</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{animationDelay:'0.1s',animationFillMode:'both'}}>
+          <p className="text-gray-600 max-w-2xl mx-auto animate-fade-in" style={{animationDelay:'0.29s',animationFillMode:'both'}}>
             Meet our team of certified fitness professionals dedicated to helping you 
             achieve your fitness goals and transform your life.
           </p>
@@ -50,7 +49,7 @@ const Coaches = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {coaches.map((coach, index) => (
-            <Card key={index} className="overflow-hidden hover-scale animate-fade-in" style={{animationDelay:`${0.15 + index*0.08}s`,animationFillMode:'both'}}>
+            <Card key={index} className="overflow-hidden hover-scale animate-fade-in" style={{animationDelay:`${0.35 + index*0.08}s`,animationFillMode:'both'}}>
               <div className="h-64 overflow-hidden">
                 <img 
                   src={coach.image} 
@@ -64,13 +63,13 @@ const Coaches = () => {
                 <p className="text-sm text-gray-500 mb-3">Specialty: {coach.specialty}</p>
                 <p className="text-gray-600 mb-4">{coach.bio}</p>
                 <div className="flex space-x-3">
-                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors">
+                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors hover-scale">
                     <Instagram size={18} />
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors">
+                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors hover-scale">
                     <Facebook size={18} />
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors">
+                  <a href="#" className="text-gray-400 hover:text-neogym-red transition-colors hover-scale">
                     <Twitter size={18} />
                   </a>
                 </div>

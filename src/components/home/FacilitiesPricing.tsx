@@ -74,11 +74,11 @@ const pricingPlans = [
 
 const FacilitiesPricing = () => {
   return (
-    <section className="section-padding bg-gray-100">
+    <section className="section-padding bg-gray-100 animate-fade-in" style={{animationDelay:'0.33s',animationFillMode:'both'}}>
       <div className="container mx-auto">
         <Tabs defaultValue="facilities" className="w-full">
-          <div className="text-center mb-12">
-            <TabsList className="inline-flex bg-gray-200 p-1 rounded-lg">
+          <div className="text-center mb-12 animate-fade-in" style={{animationDelay:'0.36s',animationFillMode:'both'}}>
+            <TabsList className="inline-flex bg-gray-200 p-1 rounded-lg animate-fade-in" style={{animationDelay:'0.38s',animationFillMode:'both'}}>
               <TabsTrigger 
                 value="facilities" 
                 className="data-[state=active]:bg-neogym-red data-[state=active]:text-white px-8 py-3 rounded-md transition-all"
@@ -96,7 +96,7 @@ const FacilitiesPricing = () => {
           
           {/* Facilities Content */}
           <TabsContent value="facilities" className="mt-0">
-            <div className="text-center mb-10">
+            <div className="text-center mb-10 animate-fade-in" style={{animationDelay:'0.4s',animationFillMode:'both'}}>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 State-of-the-Art <span className="text-neogym-red">Facilities</span>
               </h2>
@@ -107,7 +107,7 @@ const FacilitiesPricing = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {facilities.map((facility, index) => (
-                <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover-scale">
+                <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover-scale animate-fade-in" style={{animationDelay:`${0.45 + index*0.07}s`,animationFillMode:'both'}}>
                   <div className="h-64 overflow-hidden">
                     <img 
                       src={facility.image} 
@@ -126,7 +126,7 @@ const FacilitiesPricing = () => {
           
           {/* Pricing Content */}
           <TabsContent value="pricing" className="mt-0">
-            <div className="text-center mb-10">
+            <div className="text-center mb-10 animate-fade-in" style={{animationDelay:'0.6s',animationFillMode:'both'}}>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Membership <span className="text-neogym-red">Plans</span>
               </h2>
@@ -139,12 +139,13 @@ const FacilitiesPricing = () => {
               {pricingPlans.map((plan, index) => (
                 <div 
                   key={index} 
-                  className={`bg-white rounded-lg overflow-hidden shadow-md relative ${
+                  className={`bg-white rounded-lg overflow-hidden shadow-md relative hover-scale animate-fade-in ${
                     plan.recommended ? 'border-2 border-neogym-red transform md:-translate-y-4' : ''
                   }`}
+                  style={{animationDelay:`${0.68 + index*0.09}s`,animationFillMode:'both'}}
                 >
                   {plan.recommended && (
-                    <div className="bg-neogym-red text-white text-center py-2 font-semibold">
+                    <div className="bg-neogym-red text-white text-center py-2 font-semibold animate-fade-in" style={{animationDelay:'0.7s',animationFillMode:'both'}}>
                       Most Popular
                     </div>
                   )}
@@ -156,17 +157,17 @@ const FacilitiesPricing = () => {
                     </div>
                     <ul className="space-y-3 mb-8">
                       {plan.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start">
+                        <li key={idx} className="flex items-start animate-fade-in" style={{animationDelay:`${0.71 + idx*0.04}s`,animationFillMode:'both'}}>
                           <Check className="text-neogym-red mr-2 h-5 w-5 mt-0.5 flex-shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button className={`w-full ${
+                    <Button className={`w-full hover-scale animate-fade-in ${
                       plan.recommended 
                         ? 'bg-neogym-red hover:bg-neogym-red/90' 
                         : 'bg-neogym-dark hover:bg-neogym-dark/90'
-                    } text-white`}>
+                    } text-white`} style={{animationDelay:'0.75s',animationFillMode:'both'}}>
                       Choose Plan
                     </Button>
                   </div>

@@ -15,16 +15,38 @@ import EquipmentFeature from '../components/home/EquipmentFeature';
 const Index = () => {
   return (
     <Layout showPromoBanner={true}>
-      <Hero />
-      <PromoBanner />
-      <WhyChooseUs />
-      <AboutSection />
-      <Coaches />
-      <EquipmentFeature />
-      <FacilitiesPricing />
-      <Reviews />
-      <BlogSection />
-      <CallToAction />
+      <div className="space-y-6 animate-fade-in">
+        <div className="animate-fade-in" style={{ animationDelay: '0.05s', animationFillMode: 'both' }}>
+          <Hero />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+          <PromoBanner />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
+          <WhyChooseUs />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.21s', animationFillMode: 'both' }}>
+          <AboutSection />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.27s', animationFillMode: 'both' }}>
+          <Coaches />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.33s', animationFillMode: 'both' }}>
+          <EquipmentFeature />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.39s', animationFillMode: 'both' }}>
+          <FacilitiesPricing />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.45s', animationFillMode: 'both' }}>
+          <Reviews />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.51s', animationFillMode: 'both' }}>
+          <BlogSection />
+        </div>
+        <div className="animate-fade-in" style={{ animationDelay: '0.57s', animationFillMode: 'both' }}>
+          <CallToAction />
+        </div>
+      </div>
     </Layout>
   );
 };

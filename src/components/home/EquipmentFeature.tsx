@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -35,9 +34,9 @@ const featuredEquipment = [
 
 const EquipmentFeature = () => {
   return (
-    <section className="py-16 bg-gray-50 animate-fade-in">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section className="py-16 bg-gray-50 animate-fade-in" style={{animationDelay:'0.39s',animationFillMode:'both'}}>
+      <div className="container mx-auto px-4 animate-fade-in" style={{animationDelay:'0.44s',animationFillMode:'both'}}>
+        <div className="text-center mb-12 animate-fade-in" style={{animationDelay:'0.47s',animationFillMode:'both'}}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in">
             Our State-of-the-Art Equipment
           </h2>
@@ -49,8 +48,8 @@ const EquipmentFeature = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {featuredEquipment.map((item, idx) => (
-            <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow hover-scale animate-fade-in" style={{animationDelay:`${0.15 + idx*0.09}s`,animationFillMode:'both'}}>
-              <div className="aspect-video relative">
+            <Card key={item.id} className="overflow-hidden hover:shadow-lg transition-shadow hover-scale animate-fade-in" style={{animationDelay:`${0.52 + idx*0.09}s`,animationFillMode:'both'}}>
+              <div className="aspect-video relative animate-fade-in" style={{animationDelay:`${0.55 + idx*0.03}s`,animationFillMode:'both'}}>
                 <img 
                   src={item.image} 
                   alt={item.name} 
@@ -58,12 +57,12 @@ const EquipmentFeature = () => {
                 />
               </div>
               <CardContent className="p-5">
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-2 animate-fade-in">
                   <h3 className="font-bold text-lg">{item.name}</h3>
                   <Dumbbell className="text-primary h-5 w-5" />
                 </div>
-                <p className="text-gray-600 text-sm mb-4">{item.description}</p>
-                <Button asChild variant="outline" size="sm" className="w-full hover-scale">
+                <p className="text-gray-600 text-sm mb-4 animate-fade-in">{item.description}</p>
+                <Button asChild variant="outline" size="sm" className="w-full hover-scale animate-fade-in">
                   <Link to="/equipment">
                     View Details <ArrowRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -74,7 +73,7 @@ const EquipmentFeature = () => {
         </div>
         
         <div className="text-center">
-          <Button asChild size="lg" className="hover-scale animate-fade-in">
+          <Button asChild size="lg" className="hover-scale animate-fade-in" style={{animationDelay:'0.65s',animationFillMode:'both'}}>
             <Link to="/equipment">
               View All Equipment
             </Link>
